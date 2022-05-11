@@ -9,8 +9,19 @@ import 'chat_text_input.dart';
 import 'message_view.dart';
 import 'user_list_view.dart';
 
-class ChatPage extends StatelessWidget {
+class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
+
+  @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  @override
+  void dispose() {
+    SocketService.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
