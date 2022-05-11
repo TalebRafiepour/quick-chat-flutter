@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:quick_chat_app/service/socket_service.dart';
 import 'package:quick_chat_app/model/chat.dart';
+import 'package:quick_chat_app/service/socket_service.dart';
 
 class MessageView extends StatelessWidget {
   final Chat chat;
+
   MessageView({Key? key, required this.chat}) : super(key: key);
   final f = DateFormat('hh:mm a');
 
@@ -37,7 +38,13 @@ class MessageView extends StatelessWidget {
           children: [
             Text(
               (chat.userName ?? ''),
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+                color: Color(
+                  int.parse(chat.color.replaceFirst('#', '0xFF')),
+                ),
+              ),
             ),
             const SizedBox(height: 4),
             Container(
@@ -71,7 +78,7 @@ class MessageView extends StatelessWidget {
                 )),
             const SizedBox(height: 4),
             Text(
-              f.format(DateTime.parse(chat.time ?? '')),
+              f.format(DateTime.fromMillisecondsSinceEpoch(chat.time)),
               style: const TextStyle(fontSize: 10),
             )
           ],

@@ -24,13 +24,15 @@ class UserListView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: (snapshot.data ?? [])
-                  .map((e) => Container(
-                        margin: const EdgeInsets.only(right: 6),
-                        child: Chip(
-                            avatar: const Icon(Icons.person),
-                            elevation: 2,
-                            label: Text(e)),
-                      ))
+                  .map(
+                    (e) => Container(
+                      margin: const EdgeInsets.only(right: 6),
+                      child: Chip(
+                          avatar: const Icon(Icons.person),
+                          elevation: 2,
+                          label: Text(e)),
+                    ),
+                  )
                   .toList(),
             ),
           );

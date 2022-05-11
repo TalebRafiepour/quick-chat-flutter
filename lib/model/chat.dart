@@ -1,30 +1,33 @@
 class Chat {
   final String? userId;
   final String? userName;
-
   final String? message;
-  final String? time;
+  final int time;
+  final String color;
 
   Chat({
     this.userId,
     this.userName,
     this.message,
-    this.time,
+    required this.time,
+    required this.color,
   });
 
   factory Chat.fromRawJson(Map<String, dynamic> jsonData) {
     return Chat(
-        userId: jsonData['userId'],
-        userName: jsonData['userName'],
+        userName: jsonData['username'],
         message: jsonData['message'],
-        time: jsonData['time']);
+        time: jsonData['time'],
+        color: jsonData['color'],
+        userId: jsonData['userId']);
   }
+
   Map<String, dynamic> toJson() {
     return {
-      "userId": userId,
-      "userName": userName,
+      "username": userName,
       "message": message,
-      "time": time,
+      "userId": userId,
+      "color": color,
     };
   }
 }

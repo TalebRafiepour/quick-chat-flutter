@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:quick_chat_app/service/socket_service.dart';
 import 'package:quick_chat_app/model/chat.dart';
+import 'package:quick_chat_app/service/socket_service.dart';
 import 'package:quick_chat_app/utils/constants.dart';
 
-import 'message_view.dart';
 import 'chat_text_input.dart';
+import 'message_view.dart';
 import 'user_list_view.dart';
 
 class ChatPage extends StatelessWidget {
@@ -13,11 +15,23 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text(appName)),
+      appBar: AppBar(
+          centerTitle: true,
+          title: StreamBuilder(
+            stream: SocketService.typing,
+            builder: (context, AsyncSnapshot<String> snapShot) {
+              if (snapShot.data == null || snapShot.data!.isEmpty) {
+                return const Text(appName);
+              } else {
+                return Text(snapShot.data!);
+              }
+            },
+          )),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
           children: const [
             UserListView(),
             _ChatBody(),

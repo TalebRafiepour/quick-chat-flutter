@@ -29,6 +29,7 @@ class ChatTextInput extends StatelessWidget {
               textInputAction: TextInputAction.send,
               autofocus: true,
               controller: textController,
+              onChanged: (_) => SocketService.setUserIsTyping(),
               onSubmitted: (s) => sendMessage(),
               decoration: const InputDecoration(
                   hintText: 'Send a message',
