@@ -3,7 +3,7 @@ Flutter application that implements socket.io in <a href="https://nodejs.org">No
 Works in - Android, iOS and Web
 
 This repo only contains Flutter (frontend) part of the project. The Backend of this project an be found in
-<a href="https://github.com/nikkon404/quick-chat-node.git">Backend</a>
+<a href="https://github.com/TalebRafiepour/Simple-node-chat-app.git">Backend</a>
 
 ## Preview
 
